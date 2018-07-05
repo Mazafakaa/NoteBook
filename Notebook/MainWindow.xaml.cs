@@ -32,23 +32,28 @@ namespace Notebook
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
-
+            if(notebox.SelectedItem != null)
+            {
+                People i = (People)notebox.SelectedItem;
+                List<People> peoples = controller.DelPeople(i.Id);
+                notebox.ItemsSource = null;
+                notebox.ItemsSource = peoples;
+            }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnRed_Click(object sender, RoutedEventArgs e)
         {
-
+           if(notebox.SelectedItem != null)
+            {
+                
+            }
         }
     }
-    public static class Note
-    {
-        
-        
-    }
+    
     
 }

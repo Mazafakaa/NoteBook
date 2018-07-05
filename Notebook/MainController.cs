@@ -13,7 +13,6 @@ namespace Notebook
         List<People> CreatePeople(string fio, DateTime dob, string telephone, string email);
         List<People> DelPeople(int id);
         List<People> EditPeople(int id, string fio, DateTime dob, string telephone, string email);
-        void Init();
 
     }
 
@@ -75,9 +74,6 @@ namespace Notebook
                 return null;
             }
         }
-        public void Init()
-        {
-            mod.Create("Коньков Влас Викторович", DateTime.Now, "89189365854", "vvkonkov@outlook.com");
-        }
+        
     }
 }

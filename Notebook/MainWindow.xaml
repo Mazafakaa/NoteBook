@@ -13,18 +13,34 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition>
-                
+
             </ColumnDefinition>
             <ColumnDefinition>
-                
+
             </ColumnDefinition>
             <ColumnDefinition>
-                
+
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
         <ScrollViewer Grid.Row="0" Grid.ColumnSpan="3">
             <ListBox Name="notebox">
-                
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding FIO}" Margin="10 0 0 0"  Grid.Column="0"/>
+                            <TextBlock Text="{Binding DateOfBirthday}" Margin="15 0 0 0"  Grid.Column="1"/>
+                            <TextBlock Text="{Binding Email}" Margin="20 0 0 0" Grid.Column="2"/>
+                            <TextBlock Text="{Binding Telephone}" Margin="20 0 0 0" Grid.Column="3"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </ScrollViewer>
         <Button x:Name="btnAdd" Grid.Column="0" Grid.Row="1" Content="Добавить" FontSize="15px" Background="Black" Foreground="red" Click="btnAdd_Click">
