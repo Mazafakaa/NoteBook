@@ -13,6 +13,7 @@ namespace Notebook
         List<People> CreatePeople(string fio, DateTime dob, string telephone, string email);
         List<People> DelPeople(int id);
         List<People> EditPeople(int id, string fio, DateTime dob, string telephone, string email);
+        List<People> EditOrCreate(People people);
 
     }
 
@@ -42,6 +43,28 @@ namespace Notebook
                 return mod.GetAllPeople();
             }
             catch (Exception ex)
+            {
+                MessageService.ShowMessage(ex);
+                return null;
+            }
+        }
+
+        public List<People> EditOrCreate(People people)
+        {
+            try
+            {
+                if(people.Id == 0)
+                {
+                    mod.Create(people.FIO, people.DateOfBirthday, people.Telephone, people.Email);
+                }
+                else
+                {
+                    mod.Edit(people.Id, people.FIO, people.DateOfBirthday, people.Telephone, people.Email);
+                }
+                List<People> peoples = mod.GetAllPeople();
+                return peoples;
+            }
+            catch(Exception ex)
             {
                 MessageService.ShowMessage(ex);
                 return null;

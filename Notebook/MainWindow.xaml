@@ -9,8 +9,11 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.06*"></RowDefinition>
             <RowDefinition Height="0.08*"></RowDefinition>
+            
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition>
 
@@ -43,21 +46,37 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </ScrollViewer>
-        <Button x:Name="btnAdd" Grid.Column="0" Grid.Row="1" Content="Добавить" FontSize="15px" Background="Black" Foreground="red" Click="btnAdd_Click">
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Name="FIO" Margin="10 0 0 0" Grid.ColumnSpan="2" Grid.Column="0"/>
+            <DatePicker Name="DataOfBirthday" Grid.Column="2" Margin="10 0 0 0"></DatePicker>
+            <TextBox Name="Email" Margin="15 0 0 0" Grid.ColumnSpan="2" Grid.Column="3"/>
+            <TextBox Name="Telephone" Margin="10 0 0 0" Grid.Column="5"/>
+            <Button Name="submit" Grid.Column="7" Margin="10 0 0 0" Click="submit_Click">Сохранить</Button>
+        </Grid>
+        <Button x:Name="btnAdd" Grid.Column="0" Grid.Row="2" Content="Добавить" FontSize="15px" Background="Black" Foreground="red" Click="btnAdd_Click">
             <Button.ToolTip>
                 <ToolTip>
                     Добавление записи в книгу
                 </ToolTip>
             </Button.ToolTip>
         </Button>
-        <Button x:Name="btnDel" Grid.Column="1" Grid.Row="1" Content="Удалить" FontSize="15px" Background="Black" Foreground="red" Click="btnDel_Click">
+        <Button x:Name="btnDel" Grid.Column="1" Grid.Row="2" Content="Удалить" FontSize="15px" Background="Black" Foreground="red" Click="btnDel_Click">
             <Button.ToolTip>
                 <ToolTip>
                     Удаление записи в книге
                 </ToolTip>
             </Button.ToolTip>
         </Button>
-        <Button x:Name="btnRed" Grid.Column="2" Grid.Row="1" Content="Изменить" FontSize="15px" Background="Black" Foreground="red" Click="btnRed_Click">
+        <Button x:Name="btnRed" Grid.Column="2" Grid.Row="2" Content="Изменить" FontSize="15px" Background="Black" Foreground="red" Click="btnRed_Click">
             <Button.ToolTip>
                 <ToolTip>
                     Редактирование записи в книге

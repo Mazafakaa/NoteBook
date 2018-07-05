@@ -21,6 +21,7 @@ namespace Notebook
     /// </summary>
     public partial class MainWindow : Window
     {
+        static People people = new People();
         IMainController controller;
         public MainWindow()
         {
@@ -38,20 +39,41 @@ namespace Notebook
                 List<People> peoples = controller.DelPeople(i.Id);
                 notebox.ItemsSource = null;
                 notebox.ItemsSource = peoples;
+                FIO.Text = "";
+                Telephone.Text = "";
+                Email.Text = "";
+
             }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            
+            people.Id = 0;
+            FIO.Text = people.FIO = Telephone.Text = people.Telephone = people.Email = Email.Text = ""; 
+
         }
 
         private void btnRed_Click(object sender, RoutedEventArgs e)
         {
            if(notebox.SelectedItem != null)
             {
-                
+                people = (People)notebox.SelectedItem;
+                FIO.Text = people.FIO;
+                Telephone.Text = people.Telephone;
+                Email.Text = people.Email;
             }
+        }
+
+        private void submit_Click(object sender, RoutedEventArgs e)
+        {
+            people.FIO = FIO.Text;
+            people.Email = Email.Text;
+            people.Telephone = Telephone.Text;
+            people.DateOfBirthday = DateTime.Parse(DataOfBirthday.Text).Date;
+            List<People> peoples = controller.EditOrCreate(people);
+            notebox.ItemsSource = null;
+            notebox.ItemsSource = peoples;
+            FIO.Text = people.FIO = Telephone.Text = people.Telephone = people.Email = Email.Text = "";
         }
     }
     
