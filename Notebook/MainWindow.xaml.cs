@@ -30,7 +30,7 @@ namespace Notebook
             notebox.ItemsSource = controller.GetPeopleList();
             
         }
-
+        //Кнопка Удалить
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
             if(notebox.SelectedItem != null)
@@ -45,14 +45,15 @@ namespace Notebook
 
             }
         }
-
+        //Кнопка Добавить
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             people.Id = 0;
+            DataOfBirthday.Text = DateTime.Now.Date.ToString();
             FIO.Text = people.FIO = Telephone.Text = people.Telephone = people.Email = Email.Text = ""; 
 
         }
-
+        //Кнопка Изменить
         private void btnRed_Click(object sender, RoutedEventArgs e)
         {
            if(notebox.SelectedItem != null)
@@ -63,17 +64,28 @@ namespace Notebook
                 Email.Text = people.Email;
             }
         }
-
+        //Кнопка Сохранить
         private void submit_Click(object sender, RoutedEventArgs e)
         {
             people.FIO = FIO.Text;
             people.Email = Email.Text;
             people.Telephone = Telephone.Text;
-            people.DateOfBirthday = DateTime.Parse(DataOfBirthday.Text).Date;
-            List<People> peoples = controller.EditOrCreate(people);
-            notebox.ItemsSource = null;
-            notebox.ItemsSource = peoples;
-            FIO.Text = people.FIO = Telephone.Text = people.Telephone = people.Email = Email.Text = "";
+            DateTime dat;
+            //Если удастся пропарсить - то пишем в бд
+            if(DateTime.TryParse(DataOfBirthday.Text,out dat))
+            {
+                people.DateOfBirthday = dat;
+                List<People> peoples = controller.EditOrCreate(people);
+                notebox.ItemsSource = null;
+                notebox.ItemsSource = peoples;
+                FIO.Text = people.FIO = Telephone.Text = people.Telephone = people.Email = Email.Text = "";
+            }
+            //На нет и суда нет, выводим сообщение юзеру о том что он не ввел дату
+            else
+            {
+                MessageBox.Show("Введите дату                          ");
+            }
+            
         }
     }
     

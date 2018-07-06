@@ -10,6 +10,7 @@ namespace NoteBookDL
     {
         public void Create(string fio, DateTime dob, string telephone, string email)
         {
+            //Создаем пипла и пишем в бд
             using (DataBaseContext db = new DataBaseContext())
             {
                 People vovan = new People()
@@ -28,9 +29,11 @@ namespace NoteBookDL
         {
             using (DataBaseContext db = new DataBaseContext())
             {
+                //Ищем нужную нам запись в БД
                 var people = db.Peoples
                     .Where(u => u.Id == Id)
                     .FirstOrDefault();
+                //Если найдена - удаляем
                 if (people != null)
                 {
                     db.Peoples.Remove(people);
@@ -44,9 +47,12 @@ namespace NoteBookDL
         {
             using (DataBaseContext db = new DataBaseContext())
             {
+
+                //Ищем нужную запись в БД
                 var people = db.Peoples
                     .Where(u => u.Id == id)
                     .FirstOrDefault();
+                //Если найдена - изменяем
                 if (people != null)
                 {
                     people.Telephone = telephone;
@@ -63,6 +69,7 @@ namespace NoteBookDL
             List<People> peoples;
             using (DataBaseContext db = new DataBaseContext())
             {
+                //Вытягиеваем все записи из БД
                 peoples = db.Peoples.ToList<People>();
             }
             return peoples;

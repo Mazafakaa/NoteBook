@@ -20,6 +20,7 @@ namespace Notebook
     class MainController : IMainController
     {
         private static NoteBookDll mod = new NoteBookDll();
+
         public List<People> CreatePeople(string fio, DateTime dob, string telephone, string email)
         {
             try
@@ -55,11 +56,26 @@ namespace Notebook
             {
                 if(people.Id == 0)
                 {
-                    mod.Create(people.FIO, people.DateOfBirthday, people.Telephone, people.Email);
+                    if(people.Email != "" && people.FIO != "" && people.DateOfBirthday != null && people.Telephone != "")
+                    {
+                        mod.Create(people.FIO, people.DateOfBirthday, people.Telephone, people.Email);
+                    }
+                    else
+                    {
+                        throw new Exception("Заполены не все обязательные поля");
+                    }
+                    
                 }
                 else
                 {
-                    mod.Edit(people.Id, people.FIO, people.DateOfBirthday, people.Telephone, people.Email);
+                    if (people.Email != "" && people.FIO != "" && people.DateOfBirthday != null && people.Telephone != "")
+                    {
+                        mod.Edit(people.Id, people.FIO, people.DateOfBirthday, people.Telephone, people.Email);
+                    }
+                    else
+                    {
+                        throw new Exception("Заполены не все обязательные поля");
+                    }
                 }
                 List<People> peoples = mod.GetAllPeople();
                 return peoples;
@@ -67,7 +83,8 @@ namespace Notebook
             catch(Exception ex)
             {
                 MessageService.ShowMessage(ex);
-                return null;
+                List<People> peoples = mod.GetAllPeople();
+                return peoples;
             }
         }
 
