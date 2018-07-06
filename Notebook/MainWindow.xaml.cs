@@ -62,6 +62,7 @@ namespace Notebook
                 FIO.Text = people.FIO;
                 Telephone.Text = people.Telephone;
                 Email.Text = people.Email;
+                DataOfBirthday.Text = people.DateOfBirthday.ToString();
             }
         }
         //Кнопка Сохранить
@@ -78,7 +79,7 @@ namespace Notebook
                 List<People> peoples = controller.EditOrCreate(people);
                 notebox.ItemsSource = null;
                 notebox.ItemsSource = peoples;
-                FIO.Text = people.FIO = Telephone.Text = people.Telephone = people.Email = Email.Text = "";
+                FIO.Text = people.FIO = Telephone.Text = people.Telephone = people.Email = Email.Text = DataOfBirthday.Text = "";
             }
             //На нет и суда нет, выводим сообщение юзеру о том что он не ввел дату
             else

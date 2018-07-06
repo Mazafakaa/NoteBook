@@ -22,7 +22,7 @@ namespace DBTest
             db.Peoples.Add(new People() { FIO = "Просветов Алексей Вассерманович", DateOfBirthday = DateTime.Now, Email = "prosvetov5@outlook.com", Telephone = "89784858695" });
             db.SaveChanges();
             List<People> peoples = db.Peoples.ToList<People>();
-            Console.WriteLine("Добавлены: ");
+            Console.WriteLine("Содержимое БД: ");
             foreach(var t in peoples)
             {
                 Console.WriteLine("Пользователь № " + t.Id + " фио: " + t.FIO + " дата рождения: " + t.DateOfBirthday + " email: " + t.Email);
